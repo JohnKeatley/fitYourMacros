@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import FormInput from "./FormInput";
 
 export default function App() {
   const [macros, setMacros] = React.useState({
@@ -19,11 +20,12 @@ export default function App() {
           console.log(macros);
         }}
       >
-        <h2>Calories</h2>
-        <input
-          onChange={(e) => setMacros({ ...macros, calories: e.target.value })}
-        />
-        <h2>Protein</h2>
+        <FormInput name="Calories" callback={setMacros} value={macros} />
+        <FormInput name="Protein" callback={setMacros} value={macros} />
+        <FormInput name="Carbohydrates" callback={setMacros} value={macros} />
+        <FormInput name="Fats" callback={setMacros} value={macros} />
+        <FormInput name="Fibre" callback={setMacros} value={macros} />
+        {/* <h2>Protein</h2>
         <input
           onChange={(e) => setMacros({ ...macros, protein: e.target.value })}
         />
@@ -40,7 +42,7 @@ export default function App() {
         <h2>Fibre</h2>
         <input
           onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
-        />
+        /> */}
         <button>Search</button>
       </form>
     </div>
