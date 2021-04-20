@@ -11,21 +11,52 @@ export default function App() {
     protein: null
   });
 
+  const recipes = [
+    {
+      calories: 210,
+      carbs: "43g",
+      fat: "3g",
+      imageType: "jpg",
+      protein: "1g",
+      title: "Baked Apples in White Wine"
+    },
+    {
+      calories: 226,
+      carbs: "33g",
+      fat: "10g",
+      imageType: "jpg",
+      protein: "2g",
+      title: "Chocolate Silk Pie with Marshmallow Meringue"
+    }
+  ];
+
+  const handleFormSubmit = () => {
+    const recipeMatch = recipes.filter(
+      (recipe) => recipe.calories.toString() === macros.calories
+    );
+
+    console.log("recipeMatch", recipeMatch);
+  };
+
   return (
     <div className="App">
       <h1>Fit Your Macros</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(macros);
+          handleFormSubmit();
         }}
       >
-        <FormInput name="Calories" callback={setMacros} value={macros} />
+        {/* <FormInput name="Calories" callback={setMacros} value={macros} />
         <FormInput name="Protein" callback={setMacros} value={macros} />
         <FormInput name="Carbohydrates" callback={setMacros} value={macros} />
         <FormInput name="Fats" callback={setMacros} value={macros} />
-        <FormInput name="Fibre" callback={setMacros} value={macros} />
-        {/* <h2>Protein</h2>
+        <FormInput name="Fibre" callback={setMacros} value={macros} /> */}
+        <h2>Calories</h2>
+        <input
+          onChange={(e) => setMacros({ ...macros, calories: e.target.value })}
+        />
+        <h2>Protein</h2>
         <input
           onChange={(e) => setMacros({ ...macros, protein: e.target.value })}
         />
@@ -42,7 +73,7 @@ export default function App() {
         <h2>Fibre</h2>
         <input
           onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
-        /> */}
+        />
         <button>Search</button>
       </form>
     </div>
