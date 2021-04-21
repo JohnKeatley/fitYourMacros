@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import FormInput from "./FormInput";
 
@@ -10,32 +10,32 @@ export default function App() {
     fibre: null,
     protein: null
   });
+  const [query, setQuery] = React.useState("chicken");
 
-  const recipes = [
-    {
-      calories: 210,
-      carbs: "43g",
-      fat: "3g",
-      imageType: "jpg",
-      protein: "1g",
-      title: "Baked Apples in White Wine"
-    },
-    {
-      calories: 226,
-      carbs: "33g",
-      fat: "10g",
-      imageType: "jpg",
-      protein: "2g",
-      title: "Chocolate Silk Pie with Marshmallow Meringue"
-    }
-  ];
+  const getRecipes = async () => {
+    const { carbohydrates } = macros;
+    const url = `https://api.spoonacular.com/recipes/findByNutrients?apiKey=b20efc84543a4631bf719c5498bde9c2&minCarbs=${
+      carbohydrates - 5
+    }&maxCarbs=${carbohydrates}&number=2`;
 
-  const handleFormSubmit = () => {
-    const recipeMatch = recipes.filter(
-      (recipe) => recipe.calories.toString() === macros.calories
-    );
+    console.log("url", url);
+    // const response = await fetch(
+    //   `https://api.spoonacular.com/recipes/findByNutrients?apiKey=b20efc84543a4631bf719c5498bde9c2&minCarbs=${
+    //     carbohydrates - 5
+    //   }&maxCarbs=${carbohydrates}&number=2`
+    // );
 
-    console.log("recipeMatch", recipeMatch);
+    // const data = await response.json();
+
+    // console.log(data);
+
+    // const recipeMatch = response.filter(
+    //   (recipe) => recipe.calories.toString() === macros.calories
+    // );
+  };
+
+  handleFormSubmit = (query) => {
+    console.log(query);
   };
 
   return (
@@ -44,7 +44,7 @@ export default function App() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          handleFormSubmit();
+          handleFormSubmit(macros);
         }}
       >
         {/* <FormInput name="Calories" callback={setMacros} value={macros} />
