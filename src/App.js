@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./styles.css";
+import response from "./response";
 
 export default function App() {
   const [macros, setMacros] = React.useState({
@@ -13,16 +14,16 @@ export default function App() {
 
   const getRecipes = async () => {
     const { carbohydrates } = macros;
-    const url = `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=${
-      carbohydrates - 5
-    }&maxCarbs=${carbohydrates}&number=2`;
+    // const url = `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=${
+    //   carbohydrates - 5
+    // }&maxCarbs=${carbohydrates}&number=2`;
 
-    console.log("url", url);
+    // console.log("url", url);
     // const response = await fetch(
-    //   `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=${
-    //     carbohydrates - 5
-    //   }&maxCarbs=${carbohydrates}&number=2`
+    //   `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=20&maxCarbs=100&number=2`
     // );
+
+    console.log(response);
 
     // const data = await response.json();
 
@@ -34,7 +35,7 @@ export default function App() {
   };
 
   const handleFormSubmit = (query) => {
-    console.log(query);
+    getRecipes(query);
   };
 
   return (
