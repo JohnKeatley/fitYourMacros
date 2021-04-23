@@ -10,10 +10,9 @@ export default function App() {
     fibre: null,
     protein: null
   });
-  const [query, setQuery] = React.useState("chicken");
+  const [recipes, setRecipes] = React.useState([]);
 
   const getRecipes = async () => {
-    const { carbohydrates } = macros;
     // const url = `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=${
     //   carbohydrates - 5
     // }&maxCarbs=${carbohydrates}&number=2`;
@@ -23,7 +22,8 @@ export default function App() {
     //   `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=20&maxCarbs=100&number=2`
     // );
 
-    console.log(response);
+    console.log(recipes);
+    setRecipes(response);
 
     // const data = await response.json();
 
@@ -75,6 +75,20 @@ export default function App() {
           onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
         />
         <button>Search</button>
+        {console.log(recipes)}
+        {recipes &&
+          recipes.map((recipe) => {
+            return (
+              <div>
+                <div>Recipe: {recipe.title}</div>
+                <div>Calories: {recipe.calories}</div>
+                <div>Carbohydrates: {recipe.carbs}</div>
+                <div>Protein: {recipe.protein}</div>
+                <div>Fats: {recipe.fat}</div>
+                <hr />
+              </div>
+            );
+          })}
       </form>
     </div>
   );
