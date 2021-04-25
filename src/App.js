@@ -48,53 +48,70 @@ export default function App() {
           e.preventDefault();
           handleFormSubmit(macros);
         }}
+        className="ui form"
       >
-        {/* <FormInput name="Calories" callback={setMacros} value={macros} />
-        <FormInput name="Protein" callback={setMacros} value={macros} />
-        <FormInput name="Carbohydrates" callback={setMacros} value={macros} />
-        <FormInput name="Fats" callback={setMacros} value={macros} />
-        <FormInput name="Fibre" callback={setMacros} value={macros} /> */}
-        <h2>Calories</h2>
-        <input
-          onChange={(e) => setMacros({ ...macros, calories: e.target.value })}
-        />
-        <h2>Protein</h2>
-        <input
-          onChange={(e) => setMacros({ ...macros, protein: e.target.value })}
-        />
-        <h2>Carbohydrates</h2>
-        <input
-          onChange={(e) =>
-            setMacros({ ...macros, carbohydrates: e.target.value })
-          }
-        />
-        <h2>Fats</h2>
-        <input
-          onChange={(e) => setMacros({ ...macros, fats: e.target.value })}
-        />
-        <h2>Fibre</h2>
-        <input
-          onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
-        />
-        <button>Search</button>
-        {recipes &&
-          recipes.map(
-            ({ image, title, calories, carbs, protein, fat, fibre, id }) => {
-              return (
-                <Recipes
-                  image={image}
-                  title={title}
-                  calories={calories}
-                  carbs={carbs}
-                  protein={protein}
-                  fat={fat}
-                  fibre={fibre}
-                  key={id}
-                />
-              );
-            }
-          )}
+        <div className="field">
+          <label htmlFor="calories">Calories</label>
+          <input
+            id="calories"
+            onChange={(e) => setMacros({ ...macros, calories: e.target.value })}
+          />
+        </div>
+        <div className="fields">
+          <div className="four wide field">
+            <label htmlFor="protein">Protein</label>
+            <input
+              id="protein"
+              onChange={(e) =>
+                setMacros({ ...macros, protein: e.target.value })
+              }
+            />
+          </div>
+          <div className="four wide field">
+            <label htmlFor="carbs">Carbohydrates</label>
+            <input
+              id="carbs"
+              onChange={(e) =>
+                setMacros({ ...macros, carbohydrates: e.target.value })
+              }
+            />
+          </div>
+          <div className="four wide field">
+            <label htmlFor="fats">Fats</label>
+            <input
+              id="fats"
+              onChange={(e) => setMacros({ ...macros, fats: e.target.value })}
+            />
+          </div>
+          <div className="four wide field">
+            <label htmlFor="fibre">Fibre</label>
+            <input
+              id="fibre"
+              onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
+            />
+          </div>
+        </div>
+        <button type="submit" className="ui button">
+          Search
+        </button>
       </form>
+      {recipes &&
+        recipes.map(
+          ({ image, title, calories, carbs, protein, fat, fibre, id }) => {
+            return (
+              <Recipes
+                image={image}
+                title={title}
+                calories={calories}
+                carbs={carbs}
+                protein={protein}
+                fat={fat}
+                fibre={fibre}
+                key={id}
+              />
+            );
+          }
+        )}
     </div>
   );
 }
