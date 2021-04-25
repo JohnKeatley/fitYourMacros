@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./styles.css";
+import Recipes from "./Recipes";
+
 import response from "./response";
 
 export default function App() {
@@ -75,20 +77,23 @@ export default function App() {
           onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
         />
         <button>Search</button>
-        {console.log(recipes)}
         {recipes &&
-          recipes.map((recipe) => {
-            return (
-              <div>
-                <div>Recipe: {recipe.title}</div>
-                <div>Calories: {recipe.calories}</div>
-                <div>Carbohydrates: {recipe.carbs}</div>
-                <div>Protein: {recipe.protein}</div>
-                <div>Fats: {recipe.fat}</div>
-                <hr />
-              </div>
-            );
-          })}
+          recipes.map(
+            ({ image, title, calories, carbs, protein, fat, fibre, id }) => {
+              return (
+                <Recipes
+                  image={image}
+                  title={title}
+                  calories={calories}
+                  carbs={carbs}
+                  protein={protein}
+                  fat={fat}
+                  fibre={fibre}
+                  key={id}
+                />
+              );
+            }
+          )}
       </form>
     </div>
   );
