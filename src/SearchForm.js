@@ -1,5 +1,4 @@
 import React from 'react';
-import response from "./response.json";
 
 const SearchForm = (props) => { 
     const [macros, setMacros] = React.useState({
@@ -11,25 +10,14 @@ const SearchForm = (props) => {
     });
 
   const getRecipes = async () => {
-    // const url = `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=${
-    //   carbohydrates - 5
-    // }&maxCarbs=${carbohydrates}&number=2`;
+    const { REACT_APP_RECIPE_API_URL, REACT_APP_RECIPE_API_KEY } = process.env;
+    const url = `${REACT_APP_RECIPE_API_URL}?apiKey=${REACT_APP_RECIPE_API_KEY}&${macros.calories ? `maxCalories=${macros.calories}` : ''}&${macros.protein ? `minProtein=${macros.protein}` : ''}&number=4`;
 
-    // console.log("url", url);
-    // const response = await fetch(
-    //   `https://api.spoonacular.com/recipes/findByNutrients?apiKey=&minCarbs=20&maxCarbs=100&number=2`
-    // );
-
-    console.log(props.recipes);
-    props.setRecipes(response);
-
-    // const data = await response.json();
-
-    // console.log(data);
-
-    // const recipeMatch = response.filter(
-    //   (recipe) => recipe.calories.toString() === macros.calories
-    // );
+    const response = await fetch(url);
+    
+    const data = await response.json();
+    
+    await props.setRecipes(data);
   };
 
   const handleFormSubmit = () => {
