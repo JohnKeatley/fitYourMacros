@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
-import Recipes from "./Recipes";
-import SearchForm from './SearchForm';
+import Recipes from "./components/Recipes";
+import SearchForm from './components/SearchForm';
 
 
 export default function App() {

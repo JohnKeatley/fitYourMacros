@@ -2,16 +2,18 @@ import React from 'react';
 
 const SearchForm = (props) => { 
     const [macros, setMacros] = React.useState({
-        calories: null,
-        carbohydrates: null,
-        fats: null,
-        fibre: null,
-        protein: null
+        calories: "0",
+        carbohydrates: "0",
+        fats: "0",
+        fibre: "0",
+        protein: "0"
     });
+
+    const { calories, carbohydrates, fats, fibre, protein } = macros;
 
   const getRecipes = async () => {
     const { REACT_APP_RECIPE_API_URL, REACT_APP_RECIPE_API_KEY } = process.env;
-    const url = `${REACT_APP_RECIPE_API_URL}?apiKey=${REACT_APP_RECIPE_API_KEY}&${macros.calories ? `maxCalories=${macros.calories}` : ''}&${macros.protein ? `minProtein=${macros.protein}` : ''}&number=4`;
+    const url = `${REACT_APP_RECIPE_API_URL}?apiKey=${REACT_APP_RECIPE_API_KEY}&${calories ? `maxCalories=${calories}` : ''}&${protein ? `minProtein=${protein}` : ''}&number=4`;
 
     const response = await fetch(url);
     
@@ -37,6 +39,7 @@ const SearchForm = (props) => {
           <input
             id="calories"
             onChange={(e) => setMacros({ ...macros, calories: e.target.value })}
+            value={calories}
           />
         </div>
         <div className="fields">
@@ -47,6 +50,7 @@ const SearchForm = (props) => {
               onChange={(e) =>
                 setMacros({ ...macros, protein: e.target.value })
               }
+              value={protein}
             />
           </div>
           <div className="four wide field">
@@ -56,6 +60,7 @@ const SearchForm = (props) => {
               onChange={(e) =>
                 setMacros({ ...macros, carbohydrates: e.target.value })
               }
+              value={carbohydrates}
             />
           </div>
           <div className="four wide field">
@@ -63,6 +68,7 @@ const SearchForm = (props) => {
             <input
               id="fats"
               onChange={(e) => setMacros({ ...macros, fats: e.target.value })}
+              value={fats}
             />
           </div>
           <div className="four wide field">
@@ -70,6 +76,7 @@ const SearchForm = (props) => {
             <input
               id="fibre"
               onChange={(e) => setMacros({ ...macros, fibre: e.target.value })}
+              value={fibre}
             />
           </div>
         </div>
